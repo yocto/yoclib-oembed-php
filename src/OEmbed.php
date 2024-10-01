@@ -3,7 +3,6 @@ namespace YOCLIB\OEmbed;
 
 use DOMDocument;
 use DOMElement;
-use DOMException;
 use InvalidArgumentException;
 
 class OEmbed{
@@ -72,15 +71,12 @@ class OEmbed{
     public static function encodeXML(array $data): ?string{
         self::ensureValidData($data);
         $doc = new DOMDocument;
-        try{
-            $doc->append($doc->createElement('oembed'));
-            $arr = (array) $data;
-            foreach($arr as $key=>$val){
-                $elem = $doc->createElement($key);
-                $elem->appendChild($doc->createTextNode($val));
-                $doc->documentElement->append($elem);
-            }
-        }catch(DOMException $e){
+        $doc->append($doc->createElement('oembed'));
+        $arr = (array) $data;
+        foreach($arr as $key=>$val){
+            $elem = $doc->createElement($key);
+            $elem->appendChild($doc->createTextNode($val));
+            $doc->documentElement->append($elem);
         }
         return $doc->saveXML() ?? null;
     }
