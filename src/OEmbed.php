@@ -41,14 +41,6 @@ class OEmbed{
         return $arr;
     }
 
-    private static function ensureValidData(array $data): void{
-        foreach($data as $val){
-            if(!is_scalar($val)){
-                throw new InvalidArgumentException('Data elements should be integer, float, string or boolean.');
-            }
-        }
-    }
-
     /**
      * @param array $data
      * @param string $format
@@ -91,6 +83,14 @@ class OEmbed{
         }catch(DOMException $e){
         }
         return $doc->saveXML() ?? null;
+    }
+
+    private static function ensureValidData(array $data): void{
+        foreach($data as $val){
+            if(!is_scalar($val)){
+                throw new InvalidArgumentException('Data elements should be integer, float, string or boolean.');
+            }
+        }
     }
 
 }

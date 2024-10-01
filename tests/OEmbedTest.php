@@ -1,6 +1,7 @@
 <?php
 namespace YOCLIB\OEmbed\Tests;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 use YOCLIB\OEmbed\OEmbed;
@@ -19,6 +20,8 @@ class OEmbedTest extends TestCase{
 
         self::assertEquals($data,OEmbed::decode($json,'json'));
         self::assertEquals($data,OEmbed::decode($xml));
+
+        self::assertNull(OEmbed::decode('abc','unknown'));
     }
 
     public function testEncode(){
@@ -33,6 +36,13 @@ class OEmbedTest extends TestCase{
 
         self::assertEquals($json,OEmbed::encode($data,'json'));
         self::assertEquals($xml,OEmbed::encode($data));
+
+        self::assertNull(OEmbed::encode([],'unknown'));
+
+        self::expectException(InvalidArgumentException::class);
+        OEmbed::encode([
+            'def' => new OEmbed,
+        ]);
     }
 
 }
