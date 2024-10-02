@@ -8,6 +8,14 @@ use YOCLIB\OEmbed\OEmbed;
 
 class OEmbedTest extends TestCase{
 
+    public function testConstants(){
+        $this->assertEquals('application/json',OEmbed::TYPE_JSON);
+        $this->assertEquals('application/json+oembed',OEmbed::TYPE_JSON_OEMBED);
+
+        $this->assertEquals('text/xml',OEmbed::TYPE_XML);
+        $this->assertEquals('text/xml+oembed',OEmbed::TYPE_XML_OEMBED);
+    }
+
     public function testDecode(){
         $data = [
             'version' => '1.0',

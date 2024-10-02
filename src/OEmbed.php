@@ -7,8 +7,10 @@ use InvalidArgumentException;
 
 class OEmbed{
 
-    public const TYPE_JSON = 'application/json+oembed';
-    public const TYPE_XML = 'text/xml+oembed';
+    public const TYPE_JSON = 'application/json';
+    public const TYPE_JSON_OEMBED = self::TYPE_JSON.'+oembed';
+    public const TYPE_XML = 'text/xml';
+    public const TYPE_XML_OEMBED = self::TYPE_XML.'+oembed';
 
     public static function decode(string $data,string $format='xml'): ?array{
         if($format==='json'){
