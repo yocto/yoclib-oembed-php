@@ -74,6 +74,9 @@ class OEmbed{
     public static function encodeXML(array $data): ?string{
         self::ensureValidData($data);
         $doc = new DOMDocument;
+        $doc->encoding = 'UTF-8';
+        $doc->xmlStandalone = true;
+        $doc->xmlVersion = '1.0';
         $doc->append($doc->createElement('oembed'));
         $arr = (array) $data;
         foreach($arr as $key=>$val){

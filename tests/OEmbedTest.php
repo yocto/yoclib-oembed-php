@@ -32,7 +32,7 @@ class OEmbedTest extends TestCase{
             'width' => 456,
         ];
         $json = '{"version":"1.0","type":"photo","height":123,"width":456}';
-        $xml = "<?xml version=\"1.0\"?>\n<oembed><version>1.0</version><type>photo</type><height>123</height><width>456</width></oembed>\n";
+        $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<oembed><version>1.0</version><type>photo</type><height>123</height><width>456</width></oembed>\n";
 
         self::assertEquals($json,OEmbed::encode($data,'json'));
         self::assertEquals($xml,OEmbed::encode($data));

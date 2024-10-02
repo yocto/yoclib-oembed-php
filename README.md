@@ -15,8 +15,28 @@ This yocLibrary enables your project to encode and decode OEmbed data in PHP.
 
 ### Encoding
 
-TODO
+```php
+use YOCLIB\OEmbed\OEmbed;
+
+$data = [
+    'version' => '1.0',
+];
+
+$json = OEmbed::encode($data,'json');
+// or
+$xml = OEmbed::encode($data,);
+```
 
 ### Decoding
 
-TODO
+```php
+use YOCLIB\OEmbed\OEmbed;
+
+$json = '{"version":"1.0"}';
+$data = OEmbed::decode($json,'json');
+
+// or
+
+$xml = '<oembed><version>1.0</version></oembed>';
+$data = OEmbed::decode($xml);
+```
